@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>Widget without jQuery</title>
+        <link rel="stylesheet" href="main.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    </head>
+    <body>
+        <ul><li><a href="#" id="dialog">Show dialog window</a></li>
+        <li><a href="#" id="notification">Show notification</a></li></ul>
+        <script type="text/javascript" charset="utf-8" src="helpers.js"></script>
+        <script type="text/javascript" charset="utf-8" src="dialog.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            DEMO.DOM.addListener('dialog', 'click', function () {
+                DEMO.Dialog.show({
+                    body : 'cofe?',
+                    buttons : [
+                        {
+                            id : 'cancel',
+                            text : 'no',
+                            callback : function () { DEMO.Dialog.hide(); }
+                        },
+                        { 
+                            id : 'accept',
+                            text : 'Yep!',
+                            callback : function () { 
+                                DEMO.Dialog.hide(); 
+                                document.body.appendChild(document.createTextNode('I to :)')); 
+                            }
+                        }
+                    ]
+                });
+            });
+            
+            DEMO.DOM.addListener('notification', 'click', function () {
+                DEMO.Dialog.show({
+                    body : 'Cofe escape',
+                    buttons : [
+                        {
+                            id : 'accept',
+                            text : 'what?!',
+                            callback : function () { DEMO.Dialog.hide(); }
+                        }
+                    ]
+                });
+            });
+        </script>
+    </body>
+</html>
